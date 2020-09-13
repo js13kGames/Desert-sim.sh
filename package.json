@@ -1,0 +1,42 @@
+{
+  "name": "@kforbrok/js13kgames-2020",
+  "version": "0.1.0",
+  "description": "TODO",
+  "scripts": {
+    "build": "npm run build:cleanup && npm run build:production && npm run build:html && npm run build:zip",
+    "build:cleanup": "npx rimraf dist dist.zip",
+    "build:production": "npx rollup --config rollup.config.js",
+    "build:html": "npx html-minifier-terser -c html-minifier-terser.config.json -o dist/index.html src/index.html",
+    "build:zip": "npx cross-zip dist && echo \"$(wc -c dist.zip | cut -d ' ' -f 1) bytes zipped\"",
+    "build:test": "npx rollup --config rollup.config.test.js",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "npx eslint --ext .js src",
+    "lint:prettier": "npx prettier src/*.js --check",
+    "start": "npm run build:html && npx rollup --config rollup.config.js --watch",
+    "tape": "node test | npx colortape",
+    "test": "npm run build:cleanup && npm run build:test && npm run tape"
+  },
+  "author": "@kforbrok",
+  "license": "WTFPL",
+  "private": true,
+  "devDependencies": {
+    "@ampproject/rollup-plugin-closure-compiler": "0.26.0",
+    "colortape": "0.1.2",
+    "cross-zip-cli": "1.0.0",
+    "eslint": "7.8.1",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-jsdoc": "30.3.1",
+    "html-minifier-terser": "5.1.1",
+    "open": "7.2.1",
+    "prettier": "2.1.1",
+    "rimraf": "3.0.2",
+    "rollup": "2.26.9",
+    "rollup-plugin-livereload": "2.0.0",
+    "rollup-plugin-serve": "1.0.4",
+    "tape": "5.0.1"
+  },
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.6"
+  }
+}

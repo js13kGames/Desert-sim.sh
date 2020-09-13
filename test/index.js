@@ -1,0 +1,6 @@
+require('./ecs')()
+require('./rgb-256')()
+require('./rng')()
+require('./shapes')()
+require('./util')()
+require('./world')()
